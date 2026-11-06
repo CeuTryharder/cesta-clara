@@ -1,6 +1,6 @@
 # Privacidad de Cesta Clara
 
-Revisión: 5 de noviembre de 2026 · versión 0.9.1.
+Revisión: 6 de noviembre de 2026 · versión 0.9.2.
 
 ## Extensión de Chrome
 
@@ -16,6 +16,7 @@ Solo los contextos de confianza de la extensión tienen acceso al almacenamiento
 - Pestañas de supermercado: usan la sesión normal de esa tienda. El sitio puede usar sus cookies, su cuenta y su política de privacidad. Cesta Clara lee información de producto y cantidades de los SKU seleccionados para preparar la compra; no recoge los formularios de acceso o pago.
 - Voz: se activa a petición. El reconocimiento del navegador puede enviar audio a su proveedor por Internet. Cesta Clara guarda el texto del borrador, no graba ni guarda el audio. La lectura en voz alta usa el motor de voz seleccionado por el navegador, que también puede depender de un servicio externo.
 - Preparar cesta cambia cantidades en la tienda elegida. No confirma pedidos ni paga.
+- Si activas la actualización automática, cada 15 minutos y con Chrome abierto se consulta en un solo lote las tiendas ya autorizadas. No arranca sola: hace falta tu código postal, un permiso de tienda y la casilla correspondiente.
 
 ## Borrado y conservación
 

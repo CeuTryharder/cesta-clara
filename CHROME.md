@@ -1,10 +1,12 @@
-# Cesta Clara en Chrome · 0.9.1
+# Cesta Clara en Chrome · 0.9.2
 
 ## Actualizar
 
-En chrome://extensions pulsa el icono circular de recarga de Cesta Clara. Cierra y abre su panel. Debe aparecer 0.9.1. Los archivos ya están en la misma carpeta cesta-clara-chrome; no hace falta desinstalar ni borrar datos.
+En chrome://extensions pulsa el icono circular de recarga de Cesta Clara. Cierra y abre su panel. Debe aparecer 0.9.2. Los archivos ya están en la misma carpeta cesta-clara-chrome; no hace falta desinstalar ni borrar datos.
 
 Para instalar desde cero, activa Modo de desarrollador, pulsa Cargar descomprimida y elige la carpeta que contiene manifest.json.
+
+En Tiendas → Actualizaciones y privacidad puedes activar un lote cada 15 minutos, con Chrome abierto y solo en las tiendas ya autorizadas. La muestra incluida sigue siendo histórica: un precio de más de 24 horas no completa la cesta hasta que una consulta lo renueve.
 
 ## Lista y marcas
 
