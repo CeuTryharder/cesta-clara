@@ -1,4 +1,4 @@
-# Cesta Clara · Chrome y MCP · 0.9.3
+# Cesta Clara · Chrome y MCP · 0.9.4
 
 Escribe o dicta tu lista, aclara cantidades y preferencias y compara productos compatibles entre ocho supermercados españoles. La extensión puede preparar cantidades en el carrito de una tienda compatible; nunca confirma ni paga el pedido.
 
@@ -43,7 +43,7 @@ node scripts/validate-artifact.mjs
 npm audit
 ```
 
-`npm test` construye primero el Worker y la extensión en `dist/`. Las pruebas usan fixtures; no equivalen a verificar una compra real en todas las cadenas. La voz física y los carritos autenticados requieren comprobación manual. [REVISION-0.9.3.md](REVISION-0.9.3.md) describe el alcance de esta revisión.
+`npm test` construye primero el Worker y la extensión en `dist/`. Las pruebas usan fixtures; no equivalen a verificar una compra real en todas las cadenas. La voz física y los carritos autenticados requieren comprobación manual. [REVISION-0.9.4.md](REVISION-0.9.4.md) describe el alcance de esta revisión.
 
 Para actualizar una instalación desempaquetada en otra carpeta, usa `node scripts/build-extension.mjs --out /ruta/a/la/extension` y recarga la extensión en Chrome. Los datos existentes permanecen en su perfil hasta que los borres.
 

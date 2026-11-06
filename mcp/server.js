@@ -43,8 +43,8 @@ export async function handleMcp(message,context){
  if(!('id'in message))return null;
  let result;
  switch(message.method){
-  case 'server/discover':result={supportedVersions:['2026-07-28'],capabilities:{tools:{}},serverInfo:{name:'cesta-clara',version:'0.9.3'},instructions:'Datos de scraping. Respeta fecha, cobertura, zona y restricciones; nunca inventes precios ni presentes una cesta incompleta como ganadora.'};break;
-  case 'initialize':{const requested=message.params?.protocolVersion;result={protocolVersion:['2026-07-28','2025-11-25','2025-06-18'].includes(requested)?requested:'2025-11-25',capabilities:{tools:{}},serverInfo:{name:'cesta-clara',version:'0.9.3'},instructions:'Consulta estado_fuentes antes de recomendar. No sustituyas restricciones del usuario ni afirmes precios locales sin confirmar la zona.'};break;}
+  case 'server/discover':result={supportedVersions:['2026-07-28'],capabilities:{tools:{}},serverInfo:{name:'cesta-clara',version:'0.9.4'},instructions:'Datos de scraping. Respeta fecha, cobertura, zona y restricciones; nunca inventes precios ni presentes una cesta incompleta como ganadora.'};break;
+  case 'initialize':{const requested=message.params?.protocolVersion;result={protocolVersion:['2026-07-28','2025-11-25','2025-06-18'].includes(requested)?requested:'2025-11-25',capabilities:{tools:{}},serverInfo:{name:'cesta-clara',version:'0.9.4'},instructions:'Consulta estado_fuentes antes de recomendar. No sustituyas restricciones del usuario ni afirmes precios locales sin confirmar la zona.'};break;}
   case 'ping':result={};break;
   case 'tools/list':result={tools:mcpTools(context)};break;
   case 'tools/call':{

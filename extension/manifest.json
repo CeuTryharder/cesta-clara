@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Cesta Clara",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "minimum_chrome_version": "116",
   "description": "Compara tu compra respetando cantidades, variedades y composición. Aclara dudas y consulta precios con origen verificable.",
   "permissions": [
