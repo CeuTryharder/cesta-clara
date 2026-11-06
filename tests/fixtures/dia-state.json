@@ -1,0 +1,115 @@
+{
+  "l2": {
+    "plp_items": [
+      {
+        "brand": "Dia Láctea",
+        "display_name": "Leche entera Dia Láctea pack 6 x 1 L",
+        "sku_id": "608P6",
+        "url": "/huevos-leche-y-mantequilla/leche/p/608P6",
+        "prices": {
+          "currency": "EUR",
+          "discount_percentage": 0,
+          "is_club_price": false,
+          "is_promo_price": false,
+          "measure_unit": "LITRO",
+          "price": 5.76,
+          "price_per_unit": 0.96,
+          "strikethrough_price": 5.76
+        }
+      },
+      {
+        "brand": "Dia Láctea",
+        "display_name": "Leche entera Dia Láctea 1 L",
+        "sku_id": "608",
+        "url": "/huevos-leche-y-mantequilla/leche/p/608",
+        "prices": {
+          "currency": "EUR",
+          "discount_percentage": 0,
+          "is_club_price": false,
+          "is_promo_price": false,
+          "measure_unit": "LITRO",
+          "price": 0.96,
+          "price_per_unit": 0.96,
+          "strikethrough_price": 0.96
+        }
+      },
+      {
+        "brand": "Asturiana",
+        "display_name": "Leche semidesnatada Asturiana pack 6 x 1 L",
+        "sku_id": "17548P6",
+        "url": "/huevos-leche-y-mantequilla/leche/p/17548P6",
+        "prices": {
+          "currency": "EUR",
+          "discount_percentage": 6,
+          "is_club_price": true,
+          "is_promo_price": true,
+          "measure_unit": "LITRO",
+          "price": 6.54,
+          "price_per_unit": 1.09,
+          "strikethrough_price": 7.02
+        },
+        "promotions": [
+          {
+            "description": "SOLO A 1,09 EUROS LECHE SEMI ASTURIANA 1 L",
+            "exclusive_online": true,
+            "only_club_dia": true,
+            "short_description": "LECHE SEMI ASTURIANA"
+          }
+        ]
+      }
+    ]
+  },
+  "seoProductMarkingData": {
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "item": {
+          "@type": "Product",
+          "image": "https://www.dia.es/product_images/608P6/608P6_ISO_0_ES.jpg",
+          "name": "Leche entera Dia Láctea pack 6 x 1 L",
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": 5.76,
+            "priceCurrency": "EUR"
+          }
+        },
+        "position": 2,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/leche/p/608P6"
+      },
+      {
+        "@type": "ListItem",
+        "item": {
+          "@type": "Product",
+          "image": "https://www.dia.es/product_images/608/608_ISO_0_ES.jpg",
+          "name": "Leche entera Dia Láctea 1 L",
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": 0.96,
+            "priceCurrency": "EUR"
+          }
+        },
+        "position": 6,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/leche/p/608"
+      },
+      {
+        "@type": "ListItem",
+        "item": {
+          "@type": "Product",
+          "image": "https://www.dia.es/product_images/17548P6/17548P6_ISO_0_ES.jpg",
+          "name": "Leche semidesnatada Asturiana pack 6 x 1 L",
+          "offers": {
+            "@type": "AggregateOffer",
+            "availability": "https://schema.org/InStock",
+            "highPrice": 7.02,
+            "lowPrice": 6.54,
+            "priceCurrency": "EUR"
+          }
+        },
+        "position": 10,
+        "url": "https://www.dia.es/huevos-leche-y-mantequilla/leche/p/17548P6"
+      }
+    ]
+  }
+}

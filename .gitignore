@@ -1,0 +1,33 @@
+# Generated output and local observations; never distribute a user's snapshot.
+node_modules/
+dist/
+runtime/
+coverage/
+site.tar.gz
+*.tmp
+*.log
+*.sqlite*
+*.db
+*.zip
+*.har
+*.mp4
+*.webm
+*diagnostico*.json
+*diagnostic*.json
+data/browser-observed*.json
+# Local hosting, credentials and editor state.
+.openai/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+.codex/
+.agents/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

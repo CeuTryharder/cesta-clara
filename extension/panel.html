@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cesta Clara</title><link rel="stylesheet" href="panel.css"></head>
+<body>
+<header class="app-header"><a class="brand" href="#basket" aria-label="Cesta Clara, mi lista"><img src="logo.svg" width="32" height="32" alt=""><span>Cesta Clara<small>Tu compra, bien comparada</small></span></a></header>
+<nav class="tabs" role="tablist" aria-label="Secciones"><button id="tab-basket" role="tab" aria-controls="basket" aria-selected="true" tabindex="0" data-tab="basket">Mi compra</button><button id="tab-catalog" role="tab" aria-controls="catalog" aria-selected="false" tabindex="-1" data-tab="catalog">Productos</button><button id="tab-sources" role="tab" aria-controls="sources" aria-selected="false" tabindex="-1" data-tab="sources">Tiendas</button></nav>
+<main>
+ <p id="error" class="error" role="alert" tabindex="-1" hidden></p><p id="notice" class="notice" role="status" hidden></p>
+ <section id="basket" role="tabpanel" aria-labelledby="tab-basket">
+  <ol class="steps" aria-label="Pasos de la compra"><li id="step-list" aria-current="step"><span>1</span> Tu lista</li><li id="step-review"><span>2</span> Comparar</li><li id="step-shop"><span>3</span> A la tienda</li></ol>
+  <details id="listEditor" class="list-editor" open>
+   <summary>Editar tu lista <span id="listSummary"></span></summary>
+   <div class="page-heading"><h1>¿Qué compramos?</h1><p class="intro">Tu lista, por voz o por escrito. Nosotros comparamos.</p></div>
+   <form id="form" novalidate>
+    <div class="composer">
+     <div class="voice-box">
+      <button id="dictate" type="button" class="button voice-main" aria-pressed="false" aria-describedby="voiceHint voiceStatus">Dictar lista</button>
+      <p id="voiceStatus" class="voice-status" role="status" aria-live="polite" hidden></p>
+      <p id="voiceHint" class="helper">Di los productos con su cantidad. Al terminar, di <strong>«comparar»</strong>.</p>
+      <div id="voiceQuestion" class="voice-prompt" hidden><p id="voiceQuestionText"></p><button id="voiceReply" type="button" class="button button-secondary">Responder por voz</button></div>
+     </div>
+     <div class="label-row"><label for="list">Tu lista</label><button id="example" class="text-button" type="button">Usar ejemplo</button></div>
+     <textarea id="list" required maxlength="5000" aria-describedby="listHelp" placeholder="4 litros de leche&#10;1 kg de filetes de vacuno&#10;12 huevos"></textarea>
+     <p id="listHelp" class="helper">Un producto por línea. Respetamos cantidades, marcas y composición.</p>
+    </div>
+    <details class="voice-help"><summary>Ayuda para dictar</summary><p>«Marca blanca», «cualquier marca», «prefiero la marca Pascual», «deshacer» o «preparar cesta en Mercadona».</p><label class="checkbox"><input id="readQuestions" type="checkbox" checked> Leerme las preguntas</label><p id="voicePrivacy">La voz la procesa tu navegador y puede enviarse por Internet. El micrófono se activa cuando lo solicitas; siempre puedes detenerlo.</p></details>
+    <fieldset class="brand-choice"><legend>¿Qué marcas prefieres?</legend><div class="brand-options" role="group" aria-label="Preferencia de marca"><button type="button" data-brand="any" aria-pressed="false">Cualquiera</button><button type="button" data-brand="private" aria-pressed="false">Marca blanca</button><button type="button" data-brand="specific" aria-pressed="false">Una marca</button></div><select id="brandMode" class="sr-only" tabindex="-1" aria-label="Preferencia general de marca"><option value="">Sin elegir</option><option value="any">Cualquier marca</option><option value="private">Marca blanca</option><option value="specific">Una marca concreta</option></select><label for="brandName" id="brandNameLabel" hidden>Nombre de la marca</label><input id="brandName" maxlength="80" placeholder="Por ejemplo, Pascual" hidden></fieldset>
+    <details class="purchase-settings"><summary>Entrega y tiendas <span id="optionsSummary">Indica tu código postal · Hasta 2 tiendas · Con envío</span></summary><div class="delivery-choice"><label for="fulfillment">Cómo quieres comprar</label><select id="fulfillment"><option value="delivery">A domicilio · incluir envío</option><option value="store">En tienda física · solo productos</option></select></div><div class="form-row"><div><label for="postcode">Código postal</label><input id="postcode" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" value="" required></div><div><label for="maxStores">Dónde comprar</label><select id="maxStores"><option value="2">Hasta 2 tiendas</option><option value="1">Una sola tienda</option></select></div></div><p class="helper">Incluimos el envío estándar. La cobertura y la franja se confirman en cada tienda.</p></details>
+    <div class="form-actions"><button class="button button-primary" id="compare" type="submit"><span>Revisar y comparar</span><span aria-hidden="true">→</span></button></div>
+   </form>
+  </details>
+  <section id="cartProgress" class="cart-progress" hidden aria-live="polite" tabindex="-1"></section>
+  <details id="reviewDetails" tabindex="-1" class="review-details" hidden><summary>Tu lista, revisada <span id="reviewCount"></span></summary><div id="understood" class="understood" aria-live="polite"></div></details>
+  <div id="result" aria-label="Resultado de la comparación" aria-live="polite" tabindex="-1"></div>
+ </section>
+ <section id="catalog" role="tabpanel" aria-labelledby="tab-catalog" hidden><div class="page-heading"><h1>Productos</h1><p class="intro">Compara formatos y comprueba de dónde sale cada precio.</p></div><label for="query">Buscar en los precios guardados</label><input id="query" type="search" placeholder="Leche, ternera, arroz…" autocomplete="off"><p id="catalogCount" class="helper"></p><div id="products"></div></section>
+ <section id="sources" role="tabpanel" aria-labelledby="tab-sources" hidden><div class="page-heading"><h1>Tus supermercados</h1><p class="intro">Consulta el estado de cada tienda y actualiza sus precios.</p></div><p id="status" class="helper" role="status">Cargando tiendas…</p><button class="button button-secondary" id="refresh" type="button">Actualizar precios</button><div id="sourcesList" class="store-list"></div><details class="settings"><summary>Actualizaciones y privacidad</summary><label class="checkbox"><input id="automatic" type="checkbox"> Actualizar cada 6 horas con Chrome abierto</label><p class="helper">Solo las tiendas autorizadas. Las consultas pueden abrir pestañas temporales. Tu lista se guarda en este navegador.</p><p class="helper">No enviamos telemetría. Puedes borrar la lista, zona, consultas y métricas guardadas por Cesta Clara.</p><button id="clearData" type="button" class="text-button">Borrar mis datos locales</button><div id="clearDataConfirm" hidden><p>Se detendrá la preparación y se reiniciará la extensión. Se borrarán la lista, código postal, preferencias, precios consultados y métricas. Tu carrito y tu sesión en los supermercados se conservan.</p><button id="confirmClearData" type="button" class="button button-secondary">Borrar y reiniciar</button> <button id="cancelClearData" type="button" class="text-button">Cancelar</button></div></details><details class="settings" id="resourceSection"><summary>Consumo de la extensión</summary><p class="helper">Medición local. Actualiza después de una consulta.</p><button id="readUsage" type="button" class="button button-secondary">Ver consumo</button><div id="resourceStats" aria-live="polite"></div></details></section>
+ <footer><p>Precios de referencia. Confirma disponibilidad, zona y total en la tienda.</p><div><span>Cesta Clara · 0.9.1</span><button id="diagnostic" type="button" class="text-button">Guardar diagnóstico</button></div></footer>
+</main><script type="module" src="panel.js"></script></body></html>

@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Cesta Clara",
+  "version": "0.9.1",
+  "minimum_chrome_version": "116",
+  "description": "Compara tu compra respetando cantidades, variedades y composición. Aclara dudas y consulta precios con origen verificable.",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "alarms",
+    "scripting"
+  ],
+  "optional_host_permissions": [
+    "https://www.dia.es/*",
+    "https://tienda.mercadona.es/*",
+    "https://www.carrefour.es/*",
+    "https://www.compraonline.alcampo.es/*",
+    "https://www.lidl.es/*",
+    "https://www.aldi.es/*",
+    "https://supermercado.eroski.es/*",
+    "https://tienda.consum.es/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Abrir Cesta Clara",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

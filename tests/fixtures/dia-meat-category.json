@@ -1,0 +1,59 @@
+{
+  "INITIAL_STATE": {
+    "l2": {
+      "plp_items": [
+        {
+          "allergens": [
+            {
+              "name": "Sin gluten"
+            },
+            {
+              "name": "Sin lactosa"
+            }
+          ],
+          "brand": "Selección de Dia",
+          "display_name": "Carne picada de vacuno Selección de Dia 500 g",
+          "expiration_days": 0,
+          "image": "/product_images/261239/261239_ISO_0_ES.jpg",
+          "object_id": "261239",
+          "prices": {
+            "currency": "EUR",
+            "discount_percentage": 0,
+            "is_club_price": false,
+            "is_promo_price": false,
+            "measure_unit": "KILO",
+            "price": 5.59,
+            "price_per_unit": 11.18,
+            "strikethrough_price": 5.59
+          },
+          "product_info": "Sin lactosa",
+          "sku_id": "261239",
+          "units_in_cart": 0,
+          "units_in_stock": 22,
+          "url": "/carnes/hamburguesas-carne-picada-y-albondigas/p/261239",
+          "weight": 0
+        }
+      ]
+    },
+    "seoProductMarkingData": {
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "item": {
+            "@type": "Product",
+            "image": "https://www.dia.es/product_images/261239/261239_ISO_0_ES.jpg",
+            "name": "Carne picada de vacuno Selección de Dia 500 g",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "price": 5.59,
+              "priceCurrency": "EUR"
+            }
+          },
+          "position": 14,
+          "url": "https://www.dia.es/carnes/hamburguesas-carne-picada-y-albondigas/p/261239"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "INITIAL_STATE": {
+    "product": {
+      "sku_id": "261239",
+      "primary_info": {
+        "title": "Carne picada de vacuno Selección de Dia 500 g"
+      },
+      "prices": {
+        "currency": "EUR",
+        "measure_unit": "KILO",
+        "price": 5.59,
+        "price_per_unit": 11.18,
+        "strikethrough_price": 5.59
+      },
+      "ingredients": {
+        "text": "<p>Carne de vacuno (90%), agua, cereales y/o hortalizas (4%), sal, aromas, especias, conservador (<strong>sulfito</strong> de sodio), antioxidante (E301) y colorante (E120). Puede contener trazas de <strong>proteínas de la leche</strong> y <strong>soja</strong>.</p>",
+        "title": "Ingredientes"
+      }
+    },
+    "seoScriptData": {
+      "url": "https://www.dia.es/carnes/hamburguesas-carne-picada-y-albondigas/p/261239",
+      "priceCurrency": "EUR",
+      "name": "Carne picada de vacuno Selección de Dia 500 g",
+      "image": "https://www.dia.es/product_images/261239/261239_ISO_0_ES.jpg",
+      "lowPrice": 5.59,
+      "highPrice": 5.59,
+      "price": 5.59,
+      "hasPriceWithDiscount": false,
+      "unitsInStock": 22
+    }
+  }
+}
