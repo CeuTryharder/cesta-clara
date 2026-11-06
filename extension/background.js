@@ -8,7 +8,7 @@ import {fetchRetailText,collectRetailer,mergeRetailSnapshot} from './shared/coll
 import {collectBrowserStore} from './browser-collector.js';
 import {RETAILERS,retailer,sourceStatus} from './shared/collectors/registry.js';
 import {compareObserved,observedList} from './shared/observed.js';
-const ALARM='refresh-stores',LOOKUP_AGE=15*60*1000;let refreshPromise=null,seedPromise,resetting=false,activeRequests=0;
+const ALARM='refresh-stores',LOOKUP_AGE=15*60*1000,REFRESH_BATCH_MINUTES=15;let refreshPromise=null,seedPromise,resetting=false,activeRequests=0;
 chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}).catch(()=>{});
 chrome.storage.local.setAccessLevel({accessLevel:'TRUSTED_CONTEXTS'}).catch(()=>{});
 const usage=createUsageMeter(chrome.storage.local);
@@ -75,7 +75,7 @@ async function refresh(postcode=null,store='all'){
 }
 async function automatic(enabled){
  if(enabled){const {postcode}=await chrome.storage.local.get('postcode');if(typeof postcode!=='string'||!/^\d{5}$/.test(postcode))throw new Error('Indica tu código postal y compara la lista antes de activar las actualizaciones.');}
- if(enabled){let allowed=false;for(const r of RETAILERS)if(await permitted(r))allowed=true;if(!allowed)throw new Error('Primero permite el acceso a alguna cadena.');await chrome.alarms.create(ALARM,{periodInMinutes:360});}
+ if(enabled){let allowed=false;for(const r of RETAILERS)if(await permitted(r))allowed=true;if(!allowed)throw new Error('Primero permite el acceso a alguna cadena.');await scheduleRefreshBatch();}
  else await chrome.alarms.clear(ALARM);
  await chrome.storage.local.set({automatic:enabled});return {automatic:enabled};
 }
@@ -136,6 +136,7 @@ chrome.alarms.onAlarm.addListener(async alarm=>{
  catch(e){await chrome.storage.local.set({lastBackgroundError:{message:e.message,at:new Date().toISOString()}});}
  finally{activeRequests--;}
 });
-async function restoreAlarm(){if(resetting)return;activeRequests++;try{const {automatic:enabled}=await chrome.storage.local.get('automatic');if(enabled&&!await chrome.alarms.get(ALARM))await chrome.alarms.create(ALARM,{periodInMinutes:360});}finally{activeRequests--;}}
+async function scheduleRefreshBatch(){const current=await chrome.alarms.get(ALARM);if(current?.periodInMinutes===REFRESH_BATCH_MINUTES)return;await chrome.alarms.create(ALARM,{periodInMinutes:REFRESH_BATCH_MINUTES});}
+async function restoreAlarm(){if(resetting)return;activeRequests++;try{const {automatic:enabled}=await chrome.storage.local.get('automatic');if(enabled)await scheduleRefreshBatch();}finally{activeRequests--;}}
 chrome.runtime.onStartup.addListener(restoreAlarm);chrome.runtime.onInstalled.addListener(restoreAlarm);
 chrome.permissions.onRemoved.addListener(async()=>{let allowed=false;for(const r of RETAILERS)if(await permitted(r))allowed=true;if(!allowed)await automatic(false);});

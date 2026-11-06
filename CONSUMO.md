@@ -19,7 +19,7 @@ Reproducir: `node --expose-gc scripts/benchmark.mjs resultado.json`. Los resulta
 - El buscador podía ejecutar tres cadenas con navegador simultáneamente. Ahora una cola permite una sola página de consulta a la vez. Las ocho cadenas se siguen intentando; esperar turno consume parte del límite de tiempo y puede producir resultados parciales, que se identifican.
 - Los recolectores recibían toda una respuesta antes de comprobar su tamaño. Ahora leen por bloques y cancelan al superar el presupuesto de bytes: 3 MB por defecto y 5 MB en determinados índices públicos. Los errores HTTP también cancelan el cuerpo. No impide el tráfico adicional que genere una página de supermercado.
 - La caché de búsqueda sigue evitando repetir consultas automáticamente para la misma lista durante 15 minutos. El histórico conserva hasta 20 observaciones por SKU y las búsquedas hasta 30 claves; el número total de SKU puede crecer y aumentar almacenamiento y coste de lectura/escritura.
-- Las actualizaciones automáticas solo se activan por decisión del usuario, con una alarma cada seis horas. El progreso de una operación en curso se consulta cada 1,5 segundos; no hay un nuevo temporizador de medición.
+- Las actualizaciones automáticas solo se activan por decisión del usuario, con un lote de las tiendas autorizadas cada 15 minutos. El progreso de una operación en curso se consulta cada 1,5 segundos; no hay un nuevo temporizador de medición.
 
 ## Medir en el uso habitual
 
