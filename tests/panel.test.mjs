@@ -19,11 +19,11 @@ async function panel(saved={},options={}){
  const recognitions=[],spoken=[];if(options.voice){w.SpeechRecognition=class{constructor(){recognitions.push(this);}start(){this.started=true;this.onstart?.();}stop(){this.stopped=true;if(!options.deferEnd)this.onend?.();}abort(){this.onend?.();}};Object.defineProperty(w.navigator,'permissions',{value:{query:async()=>({state:'granted'})}});w.SpeechSynthesisUtterance=class{constructor(text){this.text=text;}};w.speechSynthesis={cancel:()=>{},speak:u=>spoken.push(u.text)};}
  w.chrome={runtime:{sendMessage:async message=>{
   calls.push(message);
-  if(message.type==='status')return {ok:true,data:{postcode:options.postcode??'28001',automatic:false,count:snapshot.observations.length,stores:sourceStatus(snapshot)}};
+  if(message.type==='status')return {ok:true,data:{postcode:options.postcode??'28001',automatic:options.automatic===true,count:snapshot.observations.length,stores:options.stores||sourceStatus(snapshot)}};
   if(message.type==='clear-data'){for(const k of Object.keys(saved))delete saved[k];return {ok:true,data:{cleared:true}};}
   if(message.type==='draft'){if(message.draft)saved.draft=JSON.parse(JSON.stringify(message.draft));return {ok:true,data:saved.draft||null};}
   if(message.type==='compare')return {ok:true,data:compareObserved(message,snapshot,now)};
-  if(message.type==='catalog')return {ok:true,data:observedList(snapshot,{query:message.query},now)};
+  if(message.type==='catalog')return {ok:true,data:observedList(snapshot,{query:message.query},options.catalogNow??now)};
   if(message.type==='cart-status')return {ok:true,data:saved.cartJob||null};
   if(message.type==='resource-usage')return {ok:true,data:{storageBytes:1048576,httpRequests:4,httpFailures:1,decodedBytes:524288,browserPages:2,peakBrowserPages:1,recent:[]}};
   if(message.type==='cart-open')return {ok:true,data:saved.cartJob||null};
@@ -211,4 +211,18 @@ test('Una cesta en curso da prioridad a continuar y devuelve las opciones al det
 });
 test('Un catálogo sin resultados da una salida y la marca vuelve al panel de compra',async()=>{
  const p=await panel();p.d.getElementById('tab-catalog').click();await until(()=>p.d.querySelector('#products .product'));p.d.getElementById('query').value='zzzzsinproducto';p.d.getElementById('query').dispatchEvent(new p.w.Event('input'));await until(()=>p.d.querySelector('.empty-state'));assert.match(p.d.querySelector('.empty-state').textContent,/Prueba otra palabra/);p.d.querySelector('.brand').click();assert.equal(p.d.getElementById('basket').hidden,false);assert.equal(p.d.getElementById('listEditor').open,true);p.dom.window.close();
+});
+test('Los límites de la versión están en Tiendas',async()=>{
+ const p=await panel();const text=p.d.getElementById('limits').textContent;
+ for(const part of ['no arranca solo','código postal','al menos una tienda','29 de octubre de 2026','más de 24 horas','no declara una cesta ganadora','Mercadona, Carrefour, Alcampo y Consum','pueden abrir pestañas','Chrome retrasa la alarma','no renueva precios','no una garantía','intento sin permiso','no se renovaron','precios antiguos','no los usa en el total','micrófono físico','carrito con sesión','ni una compra','Lidl y ALDI','Chrome Web Store','preliminar','no tiene autenticación','127.0.0.1'])assert.match(text,new RegExp(part));
+ p.dom.window.close();
+});
+test('Un intento sin permiso no se presenta como precio renovado',async()=>{
+ const stores=sourceStatus(snapshot).map(s=>s.store==='DIA'?{...s,status:'permission-required',lastRun:{status:'permission-required',finishedAt:'2026-11-06T08:05:00.000Z',pages:[],errors:[{message:'No has permitido el acceso a esta cadena.'}],observationCount:0}}:s);
+ const p=await panel({}, {stores});p.d.getElementById('tab-sources').click();await until(()=>p.d.getElementById('sourcesList').textContent.includes('Intento sin permiso'));
+ const card=p.d.querySelector('.sourcecard').textContent;assert.match(card,/Intento sin permiso/);assert.match(card,/No se renovaron precios/);assert.doesNotMatch(card,/Última consulta/);p.dom.window.close();
+});
+test('El catálogo marca un precio de más de 24 horas y lo deja fuera del total',async()=>{
+ const p=await panel({}, {catalogNow:now+25*3600000});p.d.getElementById('tab-catalog').click();await until(()=>p.d.getElementById('products').textContent.includes('Precio antiguo'));
+ assert.match(p.d.getElementById('products').textContent,/No se usa en el total/);assert.equal(p.d.querySelector('.total'),null);p.dom.window.close();
 });
