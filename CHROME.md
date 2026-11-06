@@ -1,12 +1,22 @@
-# Cesta Clara en Chrome · 0.9.2
+# Cesta Clara en Chrome · 0.9.3
 
 ## Actualizar
 
-En chrome://extensions pulsa el icono circular de recarga de Cesta Clara. Cierra y abre su panel. Debe aparecer 0.9.2. Los archivos ya están en la misma carpeta cesta-clara-chrome; no hace falta desinstalar ni borrar datos.
+En chrome://extensions pulsa el icono circular de recarga de Cesta Clara. Cierra y abre su panel. Debe aparecer 0.9.3. Los archivos ya están en la misma carpeta cesta-clara-chrome; no hace falta desinstalar ni borrar datos.
 
 Para instalar desde cero, activa Modo de desarrollador, pulsa Cargar descomprimida y elige la carpeta que contiene manifest.json.
 
-En Tiendas → Actualizaciones y privacidad puedes activar un lote cada 15 minutos, con Chrome abierto y solo en las tiendas ya autorizadas. La muestra incluida sigue siendo histórica: un precio de más de 24 horas no completa la cesta hasta que una consulta lo renueve.
+En Tiendas → Actualizaciones y privacidad puedes activar un lote cada 15 minutos. El lote no arranca solo: hace falta un código postal, permiso de al menos una tienda y la casilla.
+
+Una instalación nueva muestra la muestra del 29 de octubre de 2026. Un precio de más de 24 horas queda fuera del total y no declara una cesta ganadora.
+
+Cada aviso recorre solo las tiendas ya autorizadas. Mercadona, Carrefour, Alcampo y Consum pueden abrir pestañas. Si una tienda bloquea la consulta, se agota el tiempo o Chrome retrasa la alarma, ese ciclo no renueva precios. Quince minutos es la programación, no una garantía de un precio nuevo.
+
+Un intento sin permiso muestra su hora y dice que los precios no se renovaron. El catálogo marca los precios antiguos y no los usa en el total.
+
+Esta versión no comprueba el micrófono físico, un carrito con sesión iniciada ni una compra. Lidl y ALDI no tienen cesta online de alimentación. No está en Chrome Web Store y la publicación es preliminar.
+
+El servicio opcional no tiene autenticación y solo debe usarse en este equipo, en 127.0.0.1.
 
 ## Lista y marcas
 

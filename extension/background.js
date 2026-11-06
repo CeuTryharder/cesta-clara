@@ -14,7 +14,7 @@ chrome.storage.local.setAccessLevel({accessLevel:'TRUSTED_CONTEXTS'}).catch(()=>
 const usage=createUsageMeter(chrome.storage.local);
 const publicFetch=(url,options={})=>usage.fetchText(url,options,(target,opts)=>fetchRetailText(target,{...opts,fetchImpl:(u,o)=>opts.fetchImpl(u,{...o,headers:{Accept:'*/*'},credentials:'omit'})}));
 async function snapshot(){
- const stored=await chrome.storage.local.get(['snapshot','seedVersion']),version=chrome.runtime.getManifest?.().version||'0.9.2';
+ const stored=await chrome.storage.local.get(['snapshot','seedVersion']),version=chrome.runtime.getManifest?.().version||'0.9.3';
  if(stored.snapshot&&stored.seedVersion===version)return stored.snapshot;
  seedPromise??=fetch(chrome.runtime.getURL('data/dia-latest.json')).then(r=>r.json());const seed=await seedPromise;
  if(!stored.snapshot){await chrome.storage.local.set({snapshot:seed,seedVersion:version});return seed;}

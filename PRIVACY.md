@@ -1,6 +1,6 @@
 # Privacidad de Cesta Clara
 
-Revisión: 6 de noviembre de 2026 · versión 0.9.2.
+Revisión: 6 de noviembre de 2026 · versión 0.9.3.
 
 ## Extensión de Chrome
 
